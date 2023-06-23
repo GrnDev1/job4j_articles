@@ -9,9 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RandomArticleGenerator implements ArticleGenerator {
+    List<Word> wordsCopy;
     @Override
     public Article generate(List<Word> words) {
-        var wordsCopy = new ArrayList<>(words);
+        if (wordsCopy == null) {
+            wordsCopy = new ArrayList<>(words);
+        }
         Collections.shuffle(wordsCopy);
         var content = wordsCopy.stream()
                 .map(Word::getValue)
